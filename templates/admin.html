@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ideas</title>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/datatables.min.css') }}">
+    </head>
+
+    <body>
+        {% include 'components/nav.html' %}
+
+        <h1><u>Admin</u></h1>
+
+        <table id="users-table">
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>UID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% set ns = namespace(i = 1) %}
+                {% for user_data in users_data %}
+                    <tr>
+                    <td>{{ns.i}}</td>
+                    <td>{{user_data[0]}}</td>
+                    <td>{{user_data[1]}}</td>
+                    <td>{{user_data[2]}}</td>
+                    <td>
+                        <input type="button" id="accept-{{user_data[0]}}" class="button accept-button" value="Accept">
+                        <input type="button" id="reject-{{user_data[0]}}" class="button reject-button" value="Reject">
+                    </td>
+                    </tr>
+                    {% set ns.i = ns.i + 1 %}
+                {% endfor %}
+            </tbody>
+        </table>
+        <br><hr><br>
+        <table id="ideas-table">
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>IID</th>
+                    <th>Name</th>
+                    <th>Idea</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% set ns = namespace(i = 1) %}
+                {% for idea in ideas %}
+                    <tr>
+                    <td>{{ns.i}}</td>
+                    <td>{{idea[0]}}</td>
+                    <td>{{idea[1]}}</td>
+                    <td>
+                        <a href="/get-idea/{{idea[0]}}" target="_blank">{{idea[2]}}</a>
+                    </td>
+                    <td>
+                        <input type="button" class="button delete" id="{{idea[0]}}" value="Delete idea">
+                    </td>
+                    </tr>
+                    {% set ns.i = ns.i + 1 %}
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/sweetalert.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/datatables.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/admin.js') }}"></script>
+    </body>
+</html>

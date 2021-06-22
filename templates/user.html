@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ideas</title>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/datatables.min.css') }}">
+    </head>
+
+    <body>
+        {% include 'components/nav.html' %}
+
+        <h1><u>User</u></h1>
+
+        <div class='box'>
+            <h2>Add idea</h2>
+            <textarea id="idea" class="input" placeholder="Enter your idea" cols="20"></textarea>
+
+            <p>
+                <input type="button" class="button" id="submit-idea" value="Submit Idea">
+            </p>
+        </div>
+        <br><hr><br>
+        <table id="ideas-table">
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>IID</th>
+                    <th>Name</th>
+                    <th>Idea</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% set ns = namespace(i = 1) %}
+                {% for idea in ideas %}
+                    <tr>
+                    <td>{{ns.i}}</td>
+                    <td>{{idea[0]}}</td>
+                    <td>{{idea[1]}}</td>
+                    <td>
+                        <a href="/get-idea/{{idea[0]}}" target="_blank">{{idea[2]}}</a>
+                    </td>
+                    </tr>
+                    {% set ns.i = ns.i + 1 %}
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/sweetalert.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/datatables.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/user.js') }}"></script>
+    </body>
+</html>

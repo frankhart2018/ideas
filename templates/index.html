@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ideas</title>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    </head>
+
+    <body>
+        <h1><u>Login/Register</u></h1>
+
+        <div class='box'>
+            <h2>Register</h2>
+            <p>
+                <input type="text" class="input" id="name" placeholder="Enter name">
+            </p>
+            <p>
+                <input type="email" class="input" id="email" placeholder="Enter email address">
+            </p>
+            <p>
+                <input type="password" class="input" id="password" placeholder="Enter password">
+            </p>
+            <p>
+                <input type="password" class="input" id="cpassword" placeholder="Confirm password">
+            </p>
+            <p>
+                <input type="button" class="button" id="register" value="Register">
+            </p>
+        </div>
+
+        <div class='box'>
+            <h2>Login</h2>
+            <p>
+                <input type="email" class="input" id="log_email" placeholder="Enter email address">
+            </p>
+            <p>
+                <input type="password" class="input" id="log_password" placeholder="Enter password">
+            </p>
+            <p>
+                <input type="button" class="button" id="login" value="Login">
+            </p>
+        </div>
+
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/sweetalert.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+    </body>
+</html>

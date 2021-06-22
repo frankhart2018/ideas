@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ideas</title>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/datatables.min.css') }}">
+    </head>
+
+    <body>
+        {% include 'components/nav.html' %}
+
+        <h1><u>Idea #{{idea[0]}}</u></h1>
+
+        <div class='box'>
+            <p>
+                <strong>Idea ID: </strong> {{idea[0]}}
+            </p>
+            <p>
+                <strong>Posted by: </strong> {{idea[1]}}
+            </p>
+            <p>
+                <strong>Idea: </strong> {{idea[2]}}
+            </p>
+            <p>
+                <input type="text" id="comment" class="input" placeholder="Enter your comment">
+            </p>
+            <p>
+                <input type="button" id="add-comment" class="button" value="Add comment">
+            </p>
+        </div>
+        <br><hr><br>
+        <table id="comments-table">
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Name</th>
+                    <th>Comment</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% set ns = namespace(i = 1) %}
+                {% for comment in comments %}
+                    <tr>
+                    <td>{{ns.i}}</td>
+                    <td>{{comment[2]}}</td>
+                    <td>{{comment[3]}}</td>
+                    </tr>
+                    {% set ns.i = ns.i + 1 %}
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/sweetalert.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/datatables.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/idea.js') }}"></script>
+    </body>
+</html>
